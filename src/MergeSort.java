@@ -5,9 +5,12 @@ public class MergeSort {
 	static int numbers[] = {5, 3, 7, 6, 9, 1, 2, 7};
 	static int numbersLeftSide[];
 	static int numbersRightSide[];
+	static int finalArray[];
 	
 	public static void main(String[] args) {
-		mSort(numbers);
+		System.out.println("Your array is : " + Arrays.toString(numbers) + "\n");
+		finalArray = mSort(numbers);
+		System.out.println("The final array is : " + Arrays.toString(finalArray));
 	}
 
 	public static int[] mSort(int numbers[]) {
@@ -16,13 +19,15 @@ public class MergeSort {
 			return numbers;
 		}
 		// TODO code rest of algorithm.
-		splitList(numbers, numbersLeftSide, numbersRightSide);
+		numbersLeftSide = splitList(numbers, numbersLeftSide, numbersRightSide, true);
+		numbersRightSide = splitList(numbers, numbersLeftSide, numbersRightSide, false);
+		System.out.println("Done splitting");
 		numbersLeftSide = mSort(numbersLeftSide);
 		numbersRightSide = mSort(numbersRightSide);
 		return mergeList(numbersLeftSide, numbersRightSide);
 	}
 	
-	public static void splitList(int numbers[], int numbersLeftSide[], int numbersRightSide[]) {
+	public static int[] splitList(int numbers[], int numbersLeftSide[], int numbersRightSide[], boolean left) {
 
 		int n = numbers.length;
 
@@ -39,6 +44,12 @@ public class MergeSort {
 
 		System.out.println(Arrays.toString(a));
 		System.out.println(Arrays.toString(b));
+		
+		if(left) {
+			return a;
+		} else {
+			return b;
+		}
 	}
 	
 	public static int[] mergeList(int numbersLeftSide[], int numbersRightSide[]) {

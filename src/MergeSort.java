@@ -8,8 +8,10 @@ public class MergeSort {
 	}
 
 	public static void mSort(int numbers[]) {
+		// If array is only 1 number exit because it is not possible to split.
 		if(numbers.length == 1) {
-			System.exit(0);
+			return;
 		}
+		// TODO code rest of algorithm.
 	}
 }
